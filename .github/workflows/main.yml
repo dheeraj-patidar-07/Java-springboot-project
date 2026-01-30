@@ -51,6 +51,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             sudo rm -f /home/ec2-user/app/backend/target/datastore-0.0.7.jar
+            sudo chown -R ec2-user:ec2-user /home/ec2-user/app
 
       # 6️⃣ Copy JAR to EC2
       - name: Upload JAR to EC2
