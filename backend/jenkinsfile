@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "backend"
+        CONTAINER_NAME = "backend"
+    }
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/dheeraj-patidar-07/Java-springboot-project.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir('backend') {
+                    sh 'docker build -t $IMAGE_NAME .'
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh '''
+                docker rm -f $CONTAINER_NAME || true
+                docker run -d -p 8084:8084 --name $CONTAINER_NAME $IMAGE_NAME
+                '''
+            }
+        }
+    }
+}
