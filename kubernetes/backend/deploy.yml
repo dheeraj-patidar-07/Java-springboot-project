@@ -22,7 +22,7 @@ spec:
 
         env:
         - name: SPRING_DATASOURCE_URL
-          value: "jdbc:mysql://database-1.c182sky6cmfs.eu-north-1.rds.amazonaws.com:3306/datastore?createDatabaseIfNotExist=true"
+          value: "jdbc:mysql://mysql-service:3306/datastore?createDatabaseIfNotExist=true"
 
         - name: SPRING_DATASOURCE_USERNAME
           value: "admin"
