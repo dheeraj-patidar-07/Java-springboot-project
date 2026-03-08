@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: dheerajptdr/backend
+        ports:
+        - containerPort: 8084
+
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://database-1.c182sky6cmfs.eu-north-1.rds.amazonaws.com:3306/datastore?createDatabaseIfNotExist=true"
+
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "admin"
+
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "cloud123"
+
+        - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+          value: "update"
+
+        - name: SERVER_PORT
+          value: "8084"
