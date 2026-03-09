@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: dheerajptdr/frontend:v1
+        image: dheerajptdr/frontend
         ports:
         - containerPort: 8501
         env:
